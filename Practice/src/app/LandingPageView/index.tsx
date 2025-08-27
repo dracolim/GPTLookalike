@@ -2,6 +2,7 @@
 
 import PromptSuggestion from "./PromptSuggestion";
 import { TextAnimate } from "@/components/ui/text-animate"
+import {Brain} from "@phosphor-icons/react";
 
 const examples = [
   {
@@ -26,6 +27,10 @@ const examples = [
 const LandingPageView: React.FC = ({}) => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="flex items-center justify-center bg-white mb-4 h-10 w-10 rounded-xl outline-solid outline-2 outline-gray-200 py-2">
+            <Brain size = {28}/>
+        </div>
+        
         <div className="mb-12 text-xl">
             <TextAnimate className="flex justify-center font-bold text-gray-700" text="Hey, I&rsquo;m TypingMind." type="calmInUp"/>
             <TextAnimate className = "text-gray-400 font-bold" text="How can I help you today?" type="calmInUp" />

@@ -37,7 +37,7 @@ const PromptSuggestion: React.FC<{ examples: Prompt[] }> = ({ examples }) => {
                 <Card key={index} className="py-5">
                 <CardHeader className="grid grid-cols-[auto_1fr]">
                     <div className="flex h-10 w-10 mr-3 items-center justify-center rounded-xl bg-muted text-xl">
-                    <span aria-hidden>{item.icon}</span>
+                        <span aria-hidden>{item.icon}</span>
                     </div>
                     <div>
                     <CardTitle className="mb-2">{item.title}</CardTitle>
