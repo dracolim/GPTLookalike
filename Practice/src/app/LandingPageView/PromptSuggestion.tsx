@@ -30,7 +30,6 @@ const PromptSuggestion: React.FC<{ examples: Prompt[] }> = ({ examples }) => {
                     All agents  <CaretRight size={16} />
                 </div>
             </div>
-           
 
             <div className="grid gap-4 md:grid-cols-2">
                 {examples.map((item, index) => (
@@ -50,7 +49,7 @@ const PromptSuggestion: React.FC<{ examples: Prompt[] }> = ({ examples }) => {
         </div>
     </>
     
-  );
+);
 };
 
 export default PromptSuggestion;

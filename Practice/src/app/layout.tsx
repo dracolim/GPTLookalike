@@ -3,8 +3,22 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/ui/app-sidebar";
+import styled from "styled-components";
+import { Separator } from "@/components/ui/separator";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,31 +39,32 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{
-          background: `
-            radial-gradient(600px circle at 50% 0%, rgba(59, 130, 246, 0.15), transparent 50%),
-            linear-gradient(to bottom, #dbeafe 0%, #ffffff 40%, #ffffff 100%),
-            url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E")
-          `,
-          backgroundSize: 'cover, cover, 200px 200px',
-          backgroundAttachment: 'fixed, fixed, fixed',
-          minHeight: '100vh'
-        }}
       >
-        {/* Alternative approach using pseudo-element */}
-        <div 
-          className="fixed inset-0 pointer-events-none"
-          style={{
-            background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.12'/%3E%3C/svg%3E")`,
-            backgroundSize: '150px 150px',
-            mixBlendMode: 'multiply',
-            maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)'
-          }}
-        />
+        {/* <SidebarProvider>
+            <AppSidebar />
+            <div className="absolute inset-0 -z-10">
+              <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[140px] w-[620px] rounded-full bg-blue-600 opacity-60 blur-[120px]"></div>
+              <div className="pointer-events-none absolute inset-0 z-10 opacity-80 mix-blend-overlay [background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22%3E%3Cfilter id=%22a%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23a)%22 opacity=%220.15%22/%3E%3C/svg%3E')] [background-size:200px_200px]"></div>
+            </div>
+            <main>
+              <SidebarTrigger />
+              {children}
+            </main>
+        </SidebarProvider> */}
 
-        <main className="relative z-10">
-          {children}
-        </main>
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset>
+            <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+              <SidebarTrigger className="-ml-1" />
+            </header>
+            <div className="absolute inset-0 -z-10">
+              <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[140px] w-[620px] rounded-full bg-blue-600 opacity-60 blur-[120px]"></div>
+              <div className="pointer-events-none absolute inset-0 z-10 opacity-80 mix-blend-overlay [background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22%3E%3Cfilter id=%22a%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23a)%22 opacity=%220.15%22/%3E%3C/svg%3E')] [background-size:200px_200px]"></div>
+            </div>
+            <main>{children}</main>
+          </SidebarInset>
+        </SidebarProvider>
       </body>
     </html>
   );
